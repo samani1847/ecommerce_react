@@ -22,6 +22,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('/authenticate', 'Admin\AuthController@login');
     // Route::get('/admin/category')
 // });
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('cart/add', 'Frontend\CartController@addToCart');
+});
+
+
+Route::group(['middleware' => ['api', 'cors']], function () {
+    Route::post('login', 'Frontend\AuthController@login');
+    Route::post('register', 'Frontend\AuthController@register');
+    Route::get('homepage', 'Frontend\HomepageController@homedata');
+    Route::get('detail/{id}', 'Frontend\HomepageController@detailProduct');
+  
+});
 
 Route::group(['middleware' => 'cors','prefix' => 'admin'], function(){
 

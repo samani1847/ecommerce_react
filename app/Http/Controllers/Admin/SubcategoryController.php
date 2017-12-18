@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\SubSubcategory;
+use App\Model\Admin\Subcategory;
 use App\Model\Admin\Category;
 use Rest, Validator;
 

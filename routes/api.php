@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('cart/add', 'Frontend\CartController@addToCart');
     Route::delete('/cart/remove/{id}', 'Frontend\CartController@delete');
     Route::get('cart/load', 'Frontend\CartController@getCartData');
+    Route::post('voucher/use', 'Admin\VoucherController@useVoucher');
 });
 
 

@@ -74,4 +74,37 @@ class CartController extends Controller
         return $return;
         // $cartTotal = $cart->count;
     }
+
+   
+    //delete cart detail
+    public function delete(Request $request, $id){
+        
+        try{
+            $cartDetail = CartDetail::findOrFail($id);
+            $cartDetail->delete();
+            $cart = $this->getCart();
+
+            return Rest::success('Cart is deleted successfully', $cart );
+
+        } catch(Exception $e){
+            
+            return Rest::error('Error deleting data');
+
+        }
+
+     
+    }
+    
+    public function getCartData(){
+
+        $cart_data = $this->getCart();
+        
+        return Rest::success('Successfully load cart', $cart_data);
+    }
+
+    private function getCart(){
+
+        $cart = Cart::where('user_id', '=',Auth::id())->with('detail.product')->first();
+        return $this->transform_data($cart);
+    }
 }

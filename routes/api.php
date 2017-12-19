@@ -24,10 +24,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // });
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('cart/add', 'Frontend\CartController@addToCart');
+    Route::delete('/cart/remove/{id}', 'Frontend\CartController@delete');
+    Route::get('cart/load', 'Frontend\CartController@getCartData');
 });
 
 
 Route::group(['middleware' => ['api', 'cors']], function () {
+    Route::delete('/cart/delete/{id}', 'CartController@delete');
+  
     Route::post('login', 'Frontend\AuthController@login');
     Route::post('register', 'Frontend\AuthController@register');
     Route::get('homepage', 'Frontend\HomepageController@homedata');

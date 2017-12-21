@@ -28,15 +28,17 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('cart/load', 'Frontend\CartController@getCartData');
     Route::post('voucher/use', 'Admin\VoucherController@useVoucher');
 });
-
-
-Route::group(['middleware' => ['api', 'cors']], function () {
-    Route::delete('/cart/delete/{id}', 'CartController@delete');
   
+Route::group(['middleware' => ['api', 'cors']], function () {
+    Route::delete('/cart/delete/{id}', 'Frontend\CartController@delete');
+
+    Route::get('/getnotif', 'HomeController@notif');    
     Route::post('login', 'Frontend\AuthController@login');
     Route::post('register', 'Frontend\AuthController@register');
     Route::get('homepage', 'Frontend\HomepageController@homedata');
     Route::get('detail/{id}', 'Frontend\HomepageController@detailProduct');
+    
+ 
   
 });
 

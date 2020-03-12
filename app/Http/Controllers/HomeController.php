@@ -31,7 +31,7 @@ class HomeController extends Controller
         $notif = TestNotif::where('read','=',0);
         $data = $notif->get();
 
-        // $notif->update(['read'=>1]);
+        $notif->update(['read'=>1]);
 
         return response()->json($data);
 
